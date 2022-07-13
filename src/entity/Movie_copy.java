@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 public class Movie_copy {
     private long copiedMovieId;
