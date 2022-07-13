@@ -5,9 +5,9 @@ import java.util.Date;
 public class RentedMovie {
     private Date rentalDate;
     private Date returnDate;
-    private Movie_copie rentedMovie;
+    private Movie_copy rentedMovie;
 
-    public RentedMovie(Date rentalDate, Date returnDate, Movie_copie rentedMovie) {
+    public RentedMovie(Date rentalDate, Date returnDate, Movie_copy rentedMovie) {
         this.rentalDate = rentalDate;
         this.returnDate = returnDate;
         this.rentedMovie = rentedMovie;
@@ -29,11 +29,11 @@ public class RentedMovie {
         this.returnDate = returnDate;
     }
 
-    public Movie_copie getRentedMovie() {
+    public Movie_copy getRentedMovie() {
         return rentedMovie;
     }
 
-    public void setRentedMovie(Movie_copie rentedMovie) {
+    public void setRentedMovie(Movie_copy rentedMovie) {
         this.rentedMovie = rentedMovie;
     }
 }
