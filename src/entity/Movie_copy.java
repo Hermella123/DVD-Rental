@@ -27,11 +27,7 @@ public class Movie_copy {
         this.available = available;
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
+    public Movie getMovie() { return movie; }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
+    public void setMovie(Movie movie) { this.movie = movie; }
 }
