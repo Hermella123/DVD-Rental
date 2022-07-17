@@ -1,7 +1,7 @@
 package controller;
 
+import entity.Client;
 import entity.Movie_copy;
-import entity.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,7 +10,7 @@ public class UserController {
     public void menu(){
         int input;
         Scanner scan= new Scanner(System.in);
-        System.out.println("\t\tUser Management \n\t\t please input number only press" +
+        System.out.println("\t\tClient Management \n\t\t please input number only press" +
                 "\t\t1. To view rented movie by user" +
                 "\t\t2. To view user List" +
                 "\t\t3. To view user detail" +
@@ -33,25 +33,25 @@ public class UserController {
         }
 
     }
-    public void addUser(User user){
+    public void addUser(Client client){
 
     }
-    public void removeUser(User user){
+    public void removeUser(Client client){
 
     }
-    public User getUser( String firstName){
+    public Client getUser(String firstName){
         return null;
     }
-    public List<User> getUserList(){
+    public List<Client> getUserList(){
         return null;
     }
-    public void addRentedMovie(User user, Movie_copy movieCopy){
+    public void addRentedMovie(Client client, Movie_copy movieCopy){
         //return null;
     }
-    public void removeRentedMovie(User user, long movieId){
+    public void removeRentedMovie(Client client, long movieId){
         //return null;
     }
-    public List<Movie_copy> getRentedMovie(User user){
+    public List<Movie_copy> getRentedMovie(Client client){
         return null;
     }
 }
