@@ -3,12 +3,12 @@ package entity;
 public class Movie_copy {
     private long copiedMovieId;
     private boolean available;
-    private Movie movie;
+    private long movieId;
 
-    public Movie_copy(long copiedMovieId, boolean available, Movie movie) {
+    public Movie_copy(long copiedMovieId, boolean available, long movieId) {
         this.copiedMovieId = copiedMovieId;
         this.available = available;
-        this.movie = movie;
+        this.movieId = movieId;
     }
 
     public long getCopiedMovieId() {
@@ -27,7 +27,7 @@ public class Movie_copy {
         this.available = available;
     }
 
-    public Movie getMovie() { return movie; }
+    public long getMovieId() { return movieId; }
 
-    public void setMovie(Movie movie) { this.movie = movie; }
+    public void setMovieId(long movieId) { this.movieId = movieId; }
 }

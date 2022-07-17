@@ -3,21 +3,21 @@ package entity;
 import java.util.Date;
 import java.util.List;
 
-public class User {
+public class Client {
     private long id;
     private String firstName;
     private String lastName;
     private Date birthDate;
     private List<RentedMovie> rentedMovies;
 
-    public User(long id, String firstName, String lastName, Date birthDate, List<RentedMovie> rentedMovies) {
+    public Client(long id, String firstName, String lastName, Date birthDate, List<RentedMovie> rentedMovies) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.rentedMovies = rentedMovies;
     }
-    public User(long id, String firstName, String lastName, Date birthDate) {
+    public Client(long id, String firstName, String lastName, Date birthDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

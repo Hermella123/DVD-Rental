@@ -6,15 +6,15 @@ import java.util.List;
 public class Movie {
     private long movieId;
     private String title;
-    private Date year;
-    private int age;
+    private Date releasedYear;
     private int price;
     private List<Actor> cast;
+    private int age;
 
-    public Movie(long movieId, String title, Date year, int age, int price, List<Actor> cast) {
+    public Movie(long movieId, String title, Date releasedYear, int age, int price, List<Actor> cast) {
         this.movieId = movieId;
         this.title = title;
-        this.year = year;
+        this.releasedYear = releasedYear;
         this.age = age;
         this.price = price;
         this.cast = cast;
@@ -36,12 +36,12 @@ public class Movie {
         this.title = title;
     }
 
-    public Date getYear() {
-        return year;
+    public Date getReleasedYear() {
+        return releasedYear;
     }
 
-    public void setYear(Date year) {
-        this.year = year;
+    public void setReleasedYear(Date releasedYear) {
+        this.releasedYear = releasedYear;
     }
 
     public int getAge() {
