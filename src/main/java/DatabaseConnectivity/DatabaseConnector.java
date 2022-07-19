@@ -6,18 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseConnector {
- private static Connection connection;
-    private static void openDatabaseConnection() throws SQLException {
+  static Connection connection;
+     static void openDatabaseConnection() throws SQLException {
         System.out.println("Connecting to the database");
         connection = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/DVD_Rental",
                 "postgres","mi1106ki");
     }
-    private static void closeDatabaseConnection() throws SQLException {
+     static void closeDatabaseConnection() throws SQLException {
         System.out.println("Closing database Connection");
         connection.close();
     }
-    private static void createAllTablesIfNotExist() throws SQLException {
+     static void createAllTablesIfNotExist() throws SQLException {
        PreparedStatement statement = connection.prepareStatement("""
                     CREATE TABLE IF NOT EXISTS Client (
                        id serial PRIMARY KEY,
