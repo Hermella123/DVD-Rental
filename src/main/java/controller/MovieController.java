@@ -3,6 +3,7 @@ package controller;
 import entity.Actor;
 import entity.Movie;
 import entity.Movie_copy;
+import entity.RentedMovie;
 import services.MovieManager;
 
 import java.sql.SQLException;
@@ -34,8 +35,12 @@ public class MovieController {
             case 1:
                 getAvailableMovies();
                 break;
-            case 2:;
-            case 3:;
+            case 2:
+                printRentedMovies();
+                break;
+            case 3:
+                rentMovie();
+                break;
             case 4:
                 printMovie();
                 break;
@@ -76,6 +81,25 @@ public class MovieController {
         addActor(movie.getTitle());
         addMovieCopy(movie.getTitle());
     }
+    public void rentMovie()  {
+        Scanner scan= new Scanner(System.in);
+        System.out.println("insert Movie Title");
+        String title=scan.next();
+        System.out.println("insert User first name");
+        String userName=scan.next();
+        System.out.println("Insert the rental day");
+        try {
+            String rentDay= scan.next();
+            Date rentalDate= new SimpleDateFormat("dd/MM/yyyy").parse(rentDay);
+            System.out.println("Insert the return day");
+            String returnDay= scan.next();
+            Date returnDate= new SimpleDateFormat("dd/MM/yyyy").parse(returnDay);
+            RentedMovie movie=new RentedMovie(rentalDate,returnDate,title,userName);
+            movieManager.addRentedMovie(movie);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void printActors() {
         Scanner scan= new Scanner(System.in);
         System.out.println("insert Movie Title");
@@ -90,6 +114,23 @@ public class MovieController {
             System.out.println("\nFirst Name: "+ x.getFirstName());
             System.out.println("\nLast Name: "+ x.getLastName());
             System.out.println("\nMovie Title: "+ title);
+        });
+    }
+    public void printRentedMovies() {
+        Scanner scan= new Scanner(System.in);
+        System.out.println("insert Movie Title");
+        String title=scan.nextLine();
+        List<RentedMovie> movieList = null;
+        try {
+            movieList= movieManager.getRentedMovies();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        movieList.stream().forEach(x -> {
+            System.out.println("\nFirst Name: "+ x.getUserFirstName());
+            System.out.println("\nMovie Title: "+ x.getMovieTitle());
+            System.out.println("\nMovie Rented date:: "+ x.getRentalDate());
+            System.out.println("\nMovie Return date:: "+ x.getReturnDate());
         });
     }
 
