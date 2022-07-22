@@ -3,9 +3,11 @@ package services;
 import DatabaseConnectivity.ActorRepository;
 import DatabaseConnectivity.MovieCopyRepository;
 import DatabaseConnectivity.MovieRepository;
+import DatabaseConnectivity.RentedMovieRepository;
 import entity.Actor;
 import entity.Movie;
 import entity.Movie_copy;
+import entity.RentedMovie;
 
 
 import java.sql.SQLException;
@@ -15,11 +17,13 @@ public class MovieManager {
     MovieRepository movieRpo;
     MovieCopyRepository movieCopyRpo;
     ActorRepository actorRepo;
+    RentedMovieRepository rentedMovieRepo;
 
     public  MovieManager(){
         movieRpo = new MovieRepository();
         movieCopyRpo = new MovieCopyRepository();
         actorRepo = new ActorRepository();
+        rentedMovieRepo = new RentedMovieRepository();
     }
     public void addMovie(Movie movie) throws SQLException {
             try {
@@ -115,6 +119,27 @@ public class MovieManager {
             e.printStackTrace();
         } finally {
             actorRepo.closeDatabaseConnection();
+        }
+    }
+    public List<RentedMovie> getRentedMovies() throws SQLException {
+        try {
+            rentedMovieRepo.openDatabaseConnection();
+            return rentedMovieRepo.getRentedMovies();
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            rentedMovieRepo.closeDatabaseConnection();
+        }
+        return null;
+    }
+    public void addRentedMovie(RentedMovie rentedMovie) throws SQLException {
+        try {
+            rentedMovieRepo.openDatabaseConnection();
+            rentedMovieRepo.addRentedMovie(rentedMovie);
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            rentedMovieRepo.closeDatabaseConnection();
         }
     }
 }
