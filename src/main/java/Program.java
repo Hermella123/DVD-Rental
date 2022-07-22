@@ -28,11 +28,6 @@ public class Program {
                 userController= new UserController();
                 userController.menu();
                 break;
-            case 3:;
-            case 4:;
-            case 5:;
-            case 6:;
-            case 7:;
             default:
                 System.out.println("wrong entry please insert only number between 1 upto 7");
                 menu();
