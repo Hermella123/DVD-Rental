@@ -1,22 +1,20 @@
 package entity;
 
 public class Movie_copy {
-    private long copiedMovieId;
+    private String copiedMovieTitle;
     private boolean available;
-    private long movieId;
 
-    public Movie_copy(long copiedMovieId, boolean available, long movieId) {
-        this.copiedMovieId = copiedMovieId;
+    public Movie_copy(String copiedMovieTitle, boolean available) {
+        this.copiedMovieTitle = copiedMovieTitle;
         this.available = available;
-        this.movieId = movieId;
     }
 
-    public long getCopiedMovieId() {
-        return copiedMovieId;
+    public String getCopiedMovieTitle() {
+        return copiedMovieTitle;
     }
 
-    public void setCopiedMovieId(long copiedMovieId) {
-        this.copiedMovieId = copiedMovieId;
+    public void setCopiedMovieTitle(String copiedMovieTitle) {
+        this.copiedMovieTitle = copiedMovieTitle;
     }
 
     public boolean isAvailable() {
@@ -26,8 +24,4 @@ public class Movie_copy {
     public void setAvailable(boolean available) {
         this.available = available;
     }
-
-    public long getMovieId() { return movieId; }
-
-    public void setMovieId(long movieId) { this.movieId = movieId; }
 }

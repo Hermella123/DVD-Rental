@@ -5,12 +5,12 @@ import java.util.Date;
 public class RentedMovie {
     private Date rentalDate;
     private Date returnDate;
-    private long copiedMovieId;
+    private String movieTitle;
 
-    public RentedMovie(Date rentalDate, Date returnDate, long copiedMovieId) {
+    public RentedMovie(Date rentalDate, Date returnDate, String movieTitle) {
         this.rentalDate = rentalDate;
         this.returnDate = returnDate;
-        this.copiedMovieId = copiedMovieId;
+        this.movieTitle = movieTitle;
     }
 
     public Date getRentalDate() {
@@ -29,11 +29,11 @@ public class RentedMovie {
         this.returnDate = returnDate;
     }
 
-    public long getCopiedMovieId() {
-        return copiedMovieId;
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public void setCopiedMovieId(long copiedMovieId) {
-        this.copiedMovieId = copiedMovieId;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 }

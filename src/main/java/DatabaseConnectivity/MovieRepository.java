@@ -2,9 +2,8 @@ package DatabaseConnectivity;
 
 import entity.Movie;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieRepository extends DatabaseConnector {
@@ -22,43 +21,54 @@ public class MovieRepository extends DatabaseConnector {
                 rows = statement.executeUpdate();
             }
             System.out.println("rows added: " + rows);
-
     }
-    public void removeMovie(Movie movie) throws SQLException{
+
+
+    public void removeMovie(String movieTitle) throws SQLException{
         System.out.println("Deleting records from movie table");
         int rows;
         try (PreparedStatement statement = connection.prepareStatement("""
                     DELETE FROM Movie
                     where title like ?
                     """)) {
-            statement.setString(1, movie.getTitle());
+            statement.setString(1, movieTitle);
             rows = statement.executeUpdate();
         }
         System.out.println("rows deleted: " + rows);
     }
+
+
     public Movie getMovie( String title) throws SQLException {
         System.out.println("fetching records from movie table");
-        int rows;
-        try (PreparedStatement statement = connection.prepareStatement("""
-                    SELECT title, price, releasedyear FROM Movie
-                    where title like ?
-                    """)) {
-            statement.setString(1, title);
-            rows = statement.executeUpdate();
+        ResultSet rs;
+        String query = "SELECT title, price, releasedyear FROM Movie where title like "+title;
+        try(Statement statement=connection.createStatement()){
+            rs= statement.executeQuery(query);
+            rs.next();
+                String movieTitle=  rs.getString("title");
+                int price = rs.getInt("price");
+                Date releasedYear= rs.getDate("releasedyear");
+            return new Movie(movieTitle,releasedYear,price);
         }
-        System.out.println("rows fetched: " + rows);
-        return null;
     }
+
+
     public List<Movie> getMovieList() throws SQLException {
         System.out.println("fetching records from movie table");
-        int rows;
-        try (PreparedStatement statement = connection.prepareStatement("""
-                    SELECT title, price, releasedyear FROM Movie
-                    """)) {
-            rows = statement.executeUpdate();
+        ResultSet rs;
+        List<Movie> movies= new ArrayList<>();
+        String query = "SELECT title, price, releasedyear FROM Movie";
+        try (Statement statement = connection.createStatement()) {
+            rs= statement.executeQuery(query);
+            while(rs.next()){
+                String movieTitle=  rs.getString("title");
+                int price = rs.getInt("price");
+                Date releasedYear= rs.getDate("releasedyear");
+                movies.add(new Movie(movieTitle,releasedYear,price));
+            }
         }
-        System.out.println("rows fetched: " + rows);
-        return null;
+
+        return movies;
     }
 
 }

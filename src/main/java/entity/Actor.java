@@ -1,28 +1,19 @@
 package entity;
 
-import java.util.Date;
 
 public class Actor {
-    private long actorId;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private String movieTitle;
 
-    public Actor(long actorId, String firstName, String lastName, Date birthDate) {
-        this.actorId = actorId;
+    public Actor(String firstName, String lastName, String movieTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.movieTitle = movieTitle;
     }
+    public String getMovieTitle() { return movieTitle; }
 
-    public long getActorId() {
-        return actorId;
-    }
-
-    public void setActorId(long actorId) {
-        this.actorId = actorId;
-    }
-
+    public void setMovieTitle(String movieTitle) { this.movieTitle = movieTitle; }
     public String getFirstName() {
         return firstName;
     }
@@ -37,13 +28,5 @@ public class Actor {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 }

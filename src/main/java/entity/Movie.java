@@ -9,15 +9,12 @@ public class Movie {
     private Date releasedYear;
     private int price;
     private List<Actor> cast;
-    private int age;
 
-    public Movie(long movieId, String title, Date releasedYear, int age, int price, List<Actor> cast) {
-        this.movieId = movieId;
+    public Movie( String title, Date releasedYear,  int price) {
         this.title = title;
         this.releasedYear = releasedYear;
-        this.age = age;
         this.price = price;
-        this.cast = cast;
+//        this.cast = cast;
     }
 
     public long getMovieId() {
@@ -42,14 +39,6 @@ public class Movie {
 
     public void setReleasedYear(Date releasedYear) {
         this.releasedYear = releasedYear;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public int getPrice() {
