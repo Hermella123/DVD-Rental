@@ -80,7 +80,7 @@ public class MovieManager {
     public void addMovieCopy(List<Movie_copy> cast) throws SQLException {
         try {
             movieCopyRpo.openDatabaseConnection();
-            cast.stream().forEach( x-> {
+            cast.forEach(x-> {
                 try {
                     movieCopyRpo.addMovie(x.getCopiedMovieTitle(),x.isAvailable());
                 } catch (SQLException e) {
@@ -107,7 +107,7 @@ public class MovieManager {
     public void addActorList(List<Actor> actorList) throws SQLException {
         try {
             actorRepo.openDatabaseConnection();
-            actorList.stream().forEach( x-> {
+            actorList.forEach(x-> {
                 try {
                     actorRepo.addActor(x.getFirstName(),x.getLastName(),x.getMovieTitle());
                 } catch (SQLException e) {
