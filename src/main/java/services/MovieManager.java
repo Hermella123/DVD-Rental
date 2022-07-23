@@ -7,7 +7,6 @@ import DatabaseConnectivity.RentedMovieRepository;
 import entity.Actor;
 import entity.Movie;
 import entity.Movie_copy;
-import entity.RentedMovie;
 
 
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class MovieManager {
     ActorRepository actorRepo;
     RentedMovieRepository rentedMovieRepo;
 
-    public  MovieManager(){
+    public MovieManager(){
         movieRpo = new MovieRepository();
         movieCopyRpo = new MovieCopyRepository();
         actorRepo = new ActorRepository();
@@ -121,25 +120,5 @@ public class MovieManager {
             actorRepo.closeDatabaseConnection();
         }
     }
-    public List<RentedMovie> getRentedMovies() throws SQLException {
-        try {
-            rentedMovieRepo.openDatabaseConnection();
-            return rentedMovieRepo.getRentedMovies();
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            rentedMovieRepo.closeDatabaseConnection();
-        }
-        return null;
-    }
-    public void addRentedMovie(RentedMovie rentedMovie) throws SQLException {
-        try {
-            rentedMovieRepo.openDatabaseConnection();
-            rentedMovieRepo.addRentedMovie(rentedMovie);
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            rentedMovieRepo.closeDatabaseConnection();
-        }
-    }
+
 }
