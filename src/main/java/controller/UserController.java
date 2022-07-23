@@ -28,31 +28,18 @@ public class UserController {
                 "\t\t6. To rent movie to the user" +
                 "\t\t7. To delete rented movie from user");
         input = scan.nextInt();
-        switch (input){
-            case 1:
-                printUserList();
-                break;
-            case 2:
-                printUserDetail();
-                break;
-            case 3:
-                saveUser();
-                break;
-            case 4:
-                removeUser();
-                break;
-            case 5:
-                printRentedMovieByUser();
-                break;
-            case 6:
-                rentMovie();
-                break;
-            case 7:
-                deleteRentedMovie();
-                break;
-            default:
+        switch (input) {
+            case 1 -> printUserList();
+            case 2 -> printUserDetail();
+            case 3 -> saveUser();
+            case 4 -> removeUser();
+            case 5 -> printRentedMovieByUser();
+            case 6 -> rentMovie();
+            case 7 -> deleteRentedMovie();
+            default -> {
                 System.out.println("wrong entry please insert only number between 1 upto 7");
                 menu();
+            }
         }
         menu();
     }
@@ -60,7 +47,7 @@ public class UserController {
     public void printUserList(){
         try {
             List<Client> userList= userManager.getUserList();
-            userList.stream().forEach(x -> {
+            userList.forEach(x -> {
                 System.out.println("\n\t\tFirst Name: "+ x.getFirstName());
                 System.out.println("\n\t\tLast Name: "+ x.getLastName());
                 System.out.println("\n\t\tBirth date: "+ x.getBirthDate());
@@ -91,7 +78,7 @@ public class UserController {
         System.out.println("User Last Name: ");
         String lName=scan.next();
         System.out.println("Insert the Birth date: ");
-        Client user = null;
+        Client user;
         try {
             String date= scan.nextLine();
             Date birthDate= new SimpleDateFormat("dd/MM/yyyy").parse(date);
@@ -121,7 +108,7 @@ public class UserController {
         String userName = scan.next();
         try {
             List<RentedMovie> movieList= userManager.getRentedMoviesByUser(userName);
-            movieList.stream().forEach(x -> {
+            movieList.forEach(x -> {
                 System.out.println("\nFirst Name: "+ x.getUserFirstName());
                 System.out.println("\nMovie Title: "+ x.getMovieTitle());
                 System.out.println("\nMovie Rented date:: "+ x.getRentalDate());

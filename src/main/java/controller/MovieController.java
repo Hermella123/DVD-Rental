@@ -34,31 +34,18 @@ public class MovieController {
                 "\t\t6. To view movie List" +
                 "\t\t7. To view Actors cast in the movie" );
         input = scan.nextInt();
-        switch (input){
-            case 1:
-                getAvailableMovies();
-                break;
-            case 2:
-                printRentedMovies();
-                break;
-            case 3:
-                printMovie();
-                break;
-            case 4:
-                addMovie();
-                break;
-            case 5:
-                removeMovie();
-                break;
-            case 6:
-                getMovieList();
-                break;
-            case 7:
-                printActors();
-                break;
-            default:
+        switch (input) {
+            case 1 -> getAvailableMovies();
+            case 2 -> printRentedMovies();
+            case 3 -> printMovie();
+            case 4 -> addMovie();
+            case 5 -> removeMovie();
+            case 6 -> getMovieList();
+            case 7 -> printActors();
+            default -> {
                 System.out.println("wrong entry please insert only number between 1 upto 7");
                 menu();
+            }
         }
         menu();
     }
@@ -66,7 +53,7 @@ public class MovieController {
     public void getAvailableMovies() {
         try {
             List<Movie_copy> movieList= movieManager.getAvailableMovies();
-            movieList.stream().forEach(x -> {
+            movieList.forEach(x -> {
                 System.out.println("\nMovie Title: "+ x.getCopiedMovieTitle());
                 System.out.println("\nMovie Availability : "+ x.isAvailable());
             });
@@ -78,7 +65,7 @@ public class MovieController {
     public void printRentedMovies() {
         try {
             List<RentedMovie> movieList= userManager.getRentedMovies();
-            movieList.stream().forEach(x -> {
+            movieList.forEach(x -> {
                 System.out.println("\nFirst Name: "+ x.getUserFirstName());
                 System.out.println("\nMovie Title: "+ x.getMovieTitle());
                 System.out.println("\nMovie Rented date:: "+ x.getRentalDate());
@@ -108,7 +95,7 @@ public class MovieController {
         System.out.println("insert Movie Title");
         String title=scan.nextLine();
         System.out.println("Insert the released year");
-        Movie movie = null;
+        Movie movie;
         try {
             String date= scan.nextLine();
             Date releasedDate= new SimpleDateFormat("dd/MM/yyyy").parse(date);
@@ -116,11 +103,11 @@ public class MovieController {
             int price= scan.nextInt();
             movie = new Movie(title, releasedDate,price);
             movieManager.addMovie(movie);
+            addActor(movie.getTitle());
+            addMovieCopy(movie.getTitle());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        addActor(movie.getTitle());
-        addMovieCopy(movie.getTitle());
     }
 
     public void addActor(String title){
@@ -175,7 +162,7 @@ public class MovieController {
     public void getMovieList() {
         try {
             List<Movie> movieList= movieManager.getMovieList();
-            movieList.stream().forEach(x -> {
+            movieList.forEach(x -> {
                 System.out.println("\nMovie Title: "+ x.getTitle());
                 System.out.println("\nMovie Released Date: "+ x.getReleasedYear());
                 System.out.println("\nMovie Price: "+ x.getPrice());
@@ -191,7 +178,7 @@ public class MovieController {
         String title=scan.next();
         try {
             List<Actor> actorList= movieManager.getActorList(title);
-            actorList.stream().forEach(x -> {
+            actorList.forEach(x -> {
                 System.out.println("\nFirst Name: "+ x.getFirstName());
                 System.out.println("\nLast Name: "+ x.getLastName());
                 System.out.println("\nMovie Title: "+ title);
