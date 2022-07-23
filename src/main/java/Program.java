@@ -19,18 +19,19 @@ public class Program {
                 "\t\t1. Movies Menu" +
                 "\t\t2. User Menu"  );
         input = scan.nextInt();
-        switch (input){
-            case 1:
-                movieController= new MovieController();
+        switch (input) {
+            case 1 -> {
+                movieController = new MovieController();
                 movieController.menu();
-                break;
-            case 2:
-                userController= new UserController();
+            }
+            case 2 -> {
+                userController = new UserController();
                 userController.menu();
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("wrong entry please insert only number between 1 upto 7");
                 menu();
+            }
         }
         menu();
     }
