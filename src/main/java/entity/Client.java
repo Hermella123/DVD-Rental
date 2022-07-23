@@ -17,8 +17,7 @@ public class Client {
         this.birthDate = birthDate;
         this.rentedMovies = rentedMovies;
     }
-    public Client(long id, String firstName, String lastName, Date birthDate) {
-        this.id = id;
+    public Client(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
