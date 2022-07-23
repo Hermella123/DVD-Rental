@@ -14,7 +14,6 @@ public class Movie {
         this.title = title;
         this.releasedYear = releasedYear;
         this.price = price;
-//        this.cast = cast;
     }
 
     public long getMovieId() {

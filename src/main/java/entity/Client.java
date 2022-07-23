@@ -10,22 +10,13 @@ public class Client {
     private Date birthDate;
     private List<RentedMovie> rentedMovies;
 
-    public Client(long id, String firstName, String lastName, Date birthDate, List<RentedMovie> rentedMovies) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.rentedMovies = rentedMovies;
-    }
     public Client(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 
     public void setId(long id) {
         this.id = id;
