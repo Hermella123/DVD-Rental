@@ -7,28 +7,30 @@ import java.sql.SQLException;
 
 public class DatabaseConnector {
   static Connection connection;
-     public static void openDatabaseConnection() throws SQLException {
+     public void openDatabaseConnection() throws SQLException {
         System.out.println("Connecting to the database");
         connection = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/DVD_Rental",
                 "postgres","mi1106ki");
     }
-    public static void closeDatabaseConnection() throws SQLException {
+    public void closeDatabaseConnection() throws SQLException {
         System.out.println("Closing database Connection");
         connection.close();
     }
-    static void createAllTablesIfNotExist() throws SQLException {
+    public void createAllTablesIfNotExist() throws SQLException {
        PreparedStatement statement = connection.prepareStatement("""
                     CREATE TABLE IF NOT EXISTS Client (
                        id serial PRIMARY KEY,
                        firstName VARCHAR ( 50 ) UNIQUE NOT NULL,
                        lastName VARCHAR ( 50 )  NOT NULL,
                        birthDate DATE NOT NULL);
+                       
                     CREATE TABLE IF NOT EXISTS Movie (
                        movieId serial PRIMARY KEY,
                        title VARCHAR ( 50 ) UNIQUE NOT NULL,
                        price INT NOT NULL,
                        releasedYear DATE NOT NULL);
+                       
                     CREATE TABLE IF NOT EXISTS Movie_copy (
                        copiedMovieId serial PRIMARY KEY,
                        available BOOLEAN UNIQUE NOT NULL,
@@ -36,6 +38,7 @@ public class DatabaseConnector {
                          CONSTRAINT fk_movie
                           FOREIGN KEY ( movieId )
                            REFERENCES  Movie ( movieId ));
+                           
                     CREATE TABLE IF NOT EXISTS Actor (
                         actorId serial PRIMARY KEY,
                        firstName VARCHAR ( 50 ) UNIQUE NOT NULL,
@@ -45,6 +48,7 @@ public class DatabaseConnector {
                          CONSTRAINT fk_movie
                           FOREIGN KEY ( movieId )
                            REFERENCES  Movie ( movieId ));
+                           
                     CREATE TABLE IF NOT EXISTS RentedMovie (
                        rentalDate DATE NOT NULL,
                        returnDate DATE NOT NULL,

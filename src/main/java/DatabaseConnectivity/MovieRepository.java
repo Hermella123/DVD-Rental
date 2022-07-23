@@ -12,7 +12,7 @@ public class MovieRepository extends DatabaseConnector {
             System.out.println("inserting data to movie table");
             int rows;
             try (PreparedStatement statement = connection.prepareStatement("""
-                    INSERT INTO Movie(title,price,releasedyear)
+                    INSERT INTO client(title,price,releasedyear)
                     VALUES (?,?,?)
                     """)) {
                 statement.setString(1, movie.getTitle());
@@ -67,7 +67,6 @@ public class MovieRepository extends DatabaseConnector {
                 movies.add(new Movie(movieTitle,releasedYear,price));
             }
         }
-
         return movies;
     }
 

@@ -14,7 +14,7 @@ public class RentedMovieRepository extends  DatabaseConnector {
     public List<RentedMovie> getRentedMovies() throws SQLException {
         System.out.println("fetching records from rented movie table");
         ResultSet rs;
-        List<RentedMovie> actors= new ArrayList<>();
+        List<RentedMovie> movies= new ArrayList<>();
         String query = "SELECT * FROM rentedmovie";
         try(Statement statement=connection.createStatement()){
             rs= statement.executeQuery(query);
@@ -24,11 +24,12 @@ public class RentedMovieRepository extends  DatabaseConnector {
                 String movieTitle=  rs.getString("copiedmovietitle");
                 Date rentalDate= rs.getDate("rentaldate");
                 Date returnDate= rs.getDate("returndate");
-                actors.add(new RentedMovie(rentalDate,returnDate,movieTitle,userName));
+                movies.add(new RentedMovie(rentalDate,returnDate,movieTitle,userName));
             }
         }
-        return actors;
+        return movies;
     }
+
     public void addRentedMovie(RentedMovie movie) throws SQLException {
         System.out.println("inserting data to Rented Movie table");
         int rows;
@@ -43,6 +44,37 @@ public class RentedMovieRepository extends  DatabaseConnector {
             rows = statement.executeUpdate();
         }
         System.out.println("rows added: " + rows);
+    }
+    public List<RentedMovie> getRentedMoviesByUser(String userName) throws SQLException {
+        System.out.println("fetching records from rented movie table");
+        ResultSet rs;
+        List<RentedMovie> movies= new ArrayList<>();
+        String query = "SELECT * FROM rentedmovie WHERE userfirstname like "+ userName;
+        try(Statement statement=connection.createStatement()){
+            rs= statement.executeQuery(query);
+            rs.next();
+            while(rs.next()){
+                String movieTitle=  rs.getString("copiedmovietitle");
+                Date rentalDate= rs.getDate("rentaldate");
+                Date returnDate= rs.getDate("returndate");
+                movies.add(new RentedMovie(rentalDate,returnDate,movieTitle,userName));
+            }
+        }
+        return movies;
+    }
+    public void removeRentedMovie(String userName,String movieTitle ) throws SQLException{
+        System.out.println("Deleting records from Rented Movie table");
+        String query = "DELETE FROM rentedmovie where firstName like "+ userName +" and copiedmovietitle like "+movieTitle;
+        try(Statement statement=connection.createStatement()){
+            statement.executeQuery(query);
+        }
+    }
+    public void removeRentedMovieList(String movieTitle ) throws SQLException{
+        System.out.println("Deleting records from Rented Movie table");
+        String query = "DELETE FROM rentedmovie where copiedmovietitle like "+ movieTitle;
+        try(Statement statement=connection.createStatement()){
+            statement.executeQuery(query);
+        }
     }
 
 }
